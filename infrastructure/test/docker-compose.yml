@@ -23,8 +23,6 @@ services:
 
     depends_on:
       - cinema_db_test
-      - redis_test
-      - celery_worker_test
 
   cinema_db_test:
     container_name: "cinema_db_test"
@@ -33,31 +31,7 @@ services:
       - 5430:5432
     volumes:
       - ../../.db/test:/var/lib/postgresql/data
-
-
-  redis_test:
-    container_name: "redis"
-    image: "redis:latest"
-    ports:
-      - "6379:6379"
-
-  celery_worker_test:
-      container_name: "celery_worker"
-      build:
-        context: ../../
-        dockerfile: Dockerfile
-        args:
-          - test=true
-      volumes:
-        - ../../app/:/cinema/app/
-        - ../:/infrastructure/
-      command: sh -c "sleep 1 && celery -A config worker --loglevel=info"
-
-      depends_on:
-        - cinema_db_test
-        - redis_test
-      healthcheck:
-        test: ["CMD", "celery", "inspect", "ping"]
-        interval: 10s
-        timeout: 5s
-        retries: 3
+    environment:
+      - POSTGRES_USER=db_user
+      - POSTGRES_PASSWORD=db_password
+      - POSTGRES_DB=cinema_db_test
