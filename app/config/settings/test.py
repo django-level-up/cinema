@@ -19,10 +19,6 @@ DATABASES = {
         "USER": os.environ.get("DB_USER"),
         "PASSWORD": os.environ.get("DB_PASSWORD"),
     },
-    "sqlite": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    },
 }
 
 """THIRD-PARTY-APPS"""
@@ -39,5 +35,3 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ] + MIDDLEWARE
 
-CELERY_BROKER_URL = 'redis://redis_test:6379/0'
-CELERY_RESULT_BACKEND = 'redis://redis_test:6379/0'
