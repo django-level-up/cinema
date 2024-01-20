@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "app"
+description = "educenna 2.0"
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "__init__.py",
+    "manage.py",
+    "migrations",
+    "settings",
+    "tests.py", 
+    "apps.py",
+    "validation.py",
+    "common_packages.py",
+    "activate_course.py",
+    "test_vimeo.py",
+]
