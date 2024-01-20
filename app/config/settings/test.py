@@ -35,3 +35,5 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ] + MIDDLEWARE
 
+CELERY_BROKER_URL = 'redis://redis_test:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis_test:6379/0'
