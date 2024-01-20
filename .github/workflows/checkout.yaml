@@ -1,0 +1,30 @@
+name: Check code on PR and merge to main
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  # push:
+  #   branches:
+  #     - main
+
+jobs:
+  test-cinema:
+    name: Unit and lint tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run containers
+        run: |
+          docker-compose -f infrastructure/test/docker-compose.yml run --rm cinema_app_test sh -c "python3 manage.py wait_for_db && python3 manage.py migrate"
+
+      - name: Lint-test
+        run: |
+          docker-compose -f infrastructure/test/docker-compose.yml run --rm cinema_app_test sh -c "ruff . --no-cache"
+
+      - name: Unit-test
+        run: |
+          docker-compose -f infrastructure/test/docker-compose.yml run --rm cinema_app_test sh -c "python3 manage.py test"

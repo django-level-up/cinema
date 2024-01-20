@@ -1,0 +1,11 @@
+DB_HOST=cinema_db_test
+DB_USER=db_user
+DB_PASSWORD=db_password
+DB_NAME=db_test
+
+POSTGRES_USER=db_user
+POSTGRES_PASSWORD=db_password
+POSTGRES_DB=db_test
+
+MODE="TEST"
+SECRET_KEY="django-insecure-&q!1yi1(8oimws#xq3t5aw@$3&)71_zq4vtt0*b59^6p^any-test"
