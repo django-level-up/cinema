@@ -27,4 +27,4 @@ jobs:
 
       - name: Unit-test
         run: |
-          docker-compose -f infrastructure/backend/test/docker-compose.yml run --rm cinema_app_test sh -c "python3 manage.py test"
+          docker-compose -f infrastructure/test/docker-compose.yml run --rm cinema_app_test sh -c "python3 manage.py test"
