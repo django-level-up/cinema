@@ -47,7 +47,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
    - Email: super@gmail.com
    - Password: super
 
-6. Browse movies and test the API using Swagger.
+6. Browse movies and test the API using Swagger. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
 
 ## ER Diagram
 
@@ -58,4 +58,4 @@ Cinema is a movie viewing project that aggregates films from various sources suc
 - To download movies from other sources, ensure the presence of necessary API keys and configurations in the `.env` file.
 - Additional information about available APIs and configurations can be found in the documentation.
 
-For any installation issues or questions, refer to the documentation or contact the [developers](mailto:safarovqofficeal@gmail.com).
+For any installation issues or questions, refer to the documentation or contact the [developers](mailto:safarovqofficial@gmail.com).
