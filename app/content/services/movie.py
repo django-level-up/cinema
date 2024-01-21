@@ -3,7 +3,6 @@ from common.services import CRUDService
 from content.models import Movie
 from tmdbv3api import Movie as Film
 from tmdbv3api import TMDb
-from datetime import datetime
 import requests
 import random
 
@@ -57,7 +56,6 @@ def get_movie_info_tmdb(search_query):
 
 
 def get_movie_info_kp(query):
-    
     url = "https://api.kinopoisk.dev/v1.4/movie/search"
     params = {
         "page": 1,

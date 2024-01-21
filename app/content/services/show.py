@@ -1,5 +1,4 @@
 import requests
-from datetime import datetime
 import random
 from django.conf import settings
 from common.services import CRUDService

@@ -4,11 +4,9 @@ from content.models import Movie, Source, MovieSource, Show, ShowSource
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.utils.log import get_task_logger
 from PyMovieDb import IMDB
-import json
-from datetime import datetime
+
 from content.services import get_movie_info_tmdb
 from django.conf import settings
-# import requests
 
 token = settings.KINOPOISK_TOKEN
 

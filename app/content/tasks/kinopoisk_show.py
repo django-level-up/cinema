@@ -4,12 +4,11 @@ from content.models import (
     Source,
     Show,
     ShowSource,
-    Season,
 )
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.utils.log import get_task_logger
 from PyMovieDb import IMDB
-from content.services import get_seasons_info_kp, get_tv_show_info_kp
+from content.services import get_tv_show_info_kp
 from django.conf import settings
 
 
