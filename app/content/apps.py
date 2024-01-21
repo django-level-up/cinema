@@ -21,10 +21,12 @@ class ContentConfig(AppConfig):
             def on_startup(**kwargs):
                 update_movies.delay() # imdb
                 update_shows.delay()
+                
                 update_movies_tmdb.delay()
                 update_shows_tmdb.delay()
-                update_movies_kp.delay()
-                update_shows_kp.delay()
+                
+                # update_movies_kp.delay()
+                # update_shows_kp.delay()
                 
                 check_movie_source.delay()
                 check_show_source.delay()
