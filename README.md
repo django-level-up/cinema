@@ -2,15 +2,24 @@
 
 Cinema is a movie viewing project that aggregates films from various sources such as Kinopoisk, IMDb, TMD, and allows downloading. The application automatically synchronizes and updates data from sources and checks link availability 24/7.
 
+**Screen:**
+![Screen](SCREEN.png)
+
 ## Installation
 
 1. Clone the repository:
 
     ```bash
-    git clone <URL_of_the_repository>
+    git clone https://github.com/django-level-up/cinema.git
     ```
 
-2. Run Docker Compose:
+2. Rename the dotenv file:
+
+    ```bash
+    mv infrastructure/dev/dotenv infrastructure/dev/.env
+    ```
+
+3. Run Docker Compose:
 
     ```bash
     docker-compose -f infrastructure/dev/docker-compose.yml up
@@ -22,7 +31,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     docker-compose -f infrastructure/dev/docker-compose.yml up
     ```
 
-3. Stop the server and load initial data:
+4. Stop the server and load initial data:
 
     ```bash
     docker-compose -f infrastructure/dev/docker-compose.yml run --rm cinema_app_dev sh -c "python3 manage.py import_movies && python3 manage.py import_shows"
@@ -34,15 +43,15 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     docker-compose -f infrastructure/dev/docker-compose.yml up
     ```
 
-4. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
+5. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
    - Email: super@gmail.com
    - Password: super
 
-5. Browse movies and test the API using Swagger.
+6. Browse movies and test the API using Swagger.
 
 ## ER Diagram
 
-![ER Diagram](image.png)
+![ER Diagram](ER.png)
 
 ## Note
 
