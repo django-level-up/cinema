@@ -1,5 +1,5 @@
 from django.contrib import admin
-from content.models import Movie, Source
+from content.models import Movie, Source, MovieSource
 from .movie_source import MovieSourceTabularInline
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -14,6 +14,7 @@ class MovieAdmin(admin.ModelAdmin):
         "imdb_rating",
         "kinopoisk_rating",
         "duration",
+        "get_play_link_imdb",
         "release_date",
     )
     list_per_page = 10
@@ -76,17 +77,18 @@ class MovieAdmin(admin.ModelAdmin):
 
     short_description.short_description = "description"
 
-    # def get_download_link(self, obj):
-    #     imdb = MediaSource.objects.filter(movie=obj)
-    #     if imdb:
-    #         return format_html(
-    #             '<a href="{}" target="_blank">{imdb}</a>',
-    #         )
-    #     return mark_safe("<p>No download link</p>")
+    def get_play_link_imdb(self, obj):
+        imdb_instance = Source.objects.filter(slug='imdb').first()
+        imdb = (
+            MovieSource.objects.filter(movie=obj, source=imdb_instance)
+            .first()
+            .download_link
+        )
+        if imdb:
+            return format_html(
+                f'<a href="{imdb}" target="_blank">{imdb}</a>',
+            )
+        return mark_safe("<p>No download link</p>")
 
-    # get_download_link.short_description = "download_link"
+    get_play_link_imdb.short_description = "IMDB-LINK"
 
-
-@admin.register(Source)
-class SourceAdmin(admin.ModelAdmin):
-    list_display = ("title",)

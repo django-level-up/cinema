@@ -20,12 +20,20 @@ class MovieSource(BaseModel):
         blank=True,
     )
 
-    playlist_link = models.URLField(
+    kinopoisk_link = models.URLField(
         null=True,
         blank=True,
     )
+    imdb_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+    valid_source = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return f"Got {self.movie.title} on {self.source.title}"
 
     class Meta:
-        verbose_name = "Source movie"
-        verbose_name_plural = "Sources Movies"
+        verbose_name = "Movie Source"
+        verbose_name_plural = "Movies Sources"
         unique_together = ("source", "movie")

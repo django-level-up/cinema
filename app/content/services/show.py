@@ -1,15 +1,15 @@
-from common.services import CRUDService
-from content.models import Movie
 import requests
 from datetime import datetime
 from django.conf import settings
+from common.services import CRUDService
+from content.models import Show
 
 token = settings.KINOPOISK_TOKEN
 
 
-class LectureService(CRUDService):
+class ShowService(CRUDService):
     class Meta:
-        model = Movie
+        model = Show
 
 
 def get_imdb_id(url):

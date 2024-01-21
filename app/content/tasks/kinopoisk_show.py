@@ -9,7 +9,7 @@ from content.models import (
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.utils.log import get_task_logger
 from PyMovieDb import IMDB
-from content.service import get_tw_show_info_kp, get_seasons_info_kp
+from content.services import get_tw_show_info_kp, get_seasons_info_kp
 from django.conf import settings
 
 
@@ -22,9 +22,9 @@ logger = get_task_logger(__name__)
 @shared_task(bind=True, soft_time_limit=3600)
 def update_shows_kp(self):
     try:
-        kp_source = Source.objects.filter(title="Kinopoisk").first()
+        kp_source = Source.objects.filter(slug="kinopoisk").first()
         if not kp_source:
-            kp_source = Source.objects.create(title="Kinopoisk")
+            kp_source = Source.objects.create(slug="kinopoisk")
 
         for show in Show.objects.all():
             data_dict = get_tw_show_info_kp(query=show.title)

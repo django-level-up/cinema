@@ -1,7 +1,6 @@
 from common.models import BaseModel  # Abstract model with uuid and time-stamps
 from django.db import models
-
-# from django.utils.text import slugify
+from .movie_source import MovieSource
 from django.core.validators import MinValueValidator
 
 
@@ -18,12 +17,10 @@ class Movie(BaseModel):
         null=True,
     )
 
-
     release_date = models.DateField(
         null=True,
         blank=True,
     )
-
 
     imdb_rating = models.FloatField(
         blank=True,
@@ -44,12 +41,23 @@ class Movie(BaseModel):
         null=True,
         blank=True,
     )
-    sources = models.ManyToManyField(
-        "content.MovieSource",
-        related_name="movie_sources",
+    movie_sources = models.ManyToManyField(
+        "content.Source",
+        through="content.MovieSource",
+        related_name="movies",
     )
-    
-    # seems like unecuciary 
+
+    def add_source(
+        self,
+        source,
+        download_link,
+        kinopoisk_link,
+        imdb_link,
+    ):
+        if source not in self.movie_sources.all():
+            MovieSource.objects.create(movie=self, source=source)
+
+    # seems like unecuciary
     # popularity = models.IntegerField(
     #     null=True,
     #     blank=True,

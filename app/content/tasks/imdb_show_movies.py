@@ -6,7 +6,7 @@ from celery.utils.log import get_task_logger
 from PyMovieDb import IMDB
 import json
 from datetime import datetime
-from content.service import get_imdb_id
+from content.services import get_imdb_id
 from django.conf import settings
 # import requests
 
@@ -19,9 +19,9 @@ logger = get_task_logger(__name__)
 @shared_task(bind=True, soft_time_limit=3600)
 def update_movies(self):
     try:
-        imdb_source = Source.objects.filter(title="Imdb").first()
+        imdb_source = Source.objects.filter(slug="imdb").first()
         if not imdb_source:
-            imdb_source = Source.objects.create(title="Imdb")
+            imdb_source = Source.objects.create(slug="imdb")
 
         for movie in Movie.objects.all():
             data = imdb.get_by_name(movie.title, tv=False)
@@ -79,9 +79,9 @@ def update_movies(self):
 @shared_task(bind=True, soft_time_limit=3600)
 def update_shows(self):
     try:
-        imdb_source = Source.objects.filter(title="Imdb").first()
+        imdb_source = Source.objects.filter(slug="imdb").first()
         if not imdb_source:
-            imdb_source = Source.objects.create(title="Imdb")
+            imdb_source = Source.objects.create(slug="imdb")
 
         for show in Show.objects.all():
             data = imdb.get_by_name(show.title, tv=False)
