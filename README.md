@@ -1,6 +1,6 @@
 # Cinema Project
 
-Cinema is a movie viewing project that aggregates films from various sources such as Kinopoisk, IMDb, TMD, and allows downloading. The application automatically synchronizes and updates data from sources and checks link availability 24/7.
+Cinema is a movie viewing project that aggregates films from various sources such as Kinopoisk, IMDb, TMD, and allows downloading. The application utilizes Docker for containerization, Celery for asynchronous task processing, Redis for task queue management, and PostgreSQL as the database. It automatically synchronizes and updates data from sources, checking link availability 24/7.
 
 **Screen:**
 ![Screen](SCREEN.png)
