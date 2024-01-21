@@ -62,6 +62,13 @@ class Movie(BaseModel):
         if source not in self.movie_sources.all():
             MovieSource.objects.create(movie=self, source=source)
 
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        verbose_name = "1. Movie"
+        verbose_name_plural = "1. Movies"
+
     # seems like unecuciary
     # popularity = models.IntegerField(
     #     null=True,
@@ -82,6 +89,3 @@ class Movie(BaseModel):
     #     null=True,
     #     blank=True,
     # )
-
-    def __str__(self) -> str:
-        return self.title

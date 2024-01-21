@@ -1,15 +1,15 @@
 from django.contrib import admin
-from content.models import SeasonSource
+from content.models import EpisodeSource
 from django.utils.safestring import mark_safe
 
 
-class SeasonSourceInline(admin.StackedInline):
-    model = SeasonSource
+class EpisodeSourceInline(admin.StackedInline):
+    model = EpisodeSource
     extra = 1
 
 
-@admin.register(SeasonSource)
-class SeasonSourceAdmin(admin.ModelAdmin):
+@admin.register(EpisodeSource)
+class EpisodeSourceAdmin(admin.ModelAdmin):
     list_display = ["season", "get_download_link", "source"]
     list_filter = ["source"]
     list_per_page = 10

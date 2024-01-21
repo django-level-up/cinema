@@ -6,3 +6,5 @@ from .source import Source
 from .show_source import ShowSource
 from.season_source import SeasonSource
 from .season import Season
+from .episode_source import EpisodeSource
+from .episode import Episode

@@ -1,17 +1,17 @@
 from django.contrib import admin
-from content.models import Season
-from .season_source import SeasonSourceInline
+from content.models import Episode
+from .episode_source import EpisodeSourceInline
 
 
-@admin.register(Season)
-class SeasonAdmin(admin.ModelAdmin):
+@admin.register(Episode)
+class EpisodeAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "short_description",
         "duration",
     )
     list_per_page = 10
-    inlines = [SeasonSourceInline]
+    inlines = [EpisodeSourceInline]
     exclude = ("sources",)
     # prepopulated_fields = {"slug": ("title",)}
     fieldsets = (

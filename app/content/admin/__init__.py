@@ -5,3 +5,5 @@ from .show_source import ShowSource
 from .season import SeasonAdmin
 from .show_source import ShowSourceAdmin
 from .source import SourceAdmin
+from .episode import Episode
+from .episode_source import EpisodeSourceAdmin

@@ -33,7 +33,7 @@ class Show(BaseModel):
         null=True,
         validators=[MinValueValidator(0.0)],
     )
-    
+
     tmdb_rating = models.FloatField(
         blank=True,
         null=True,
@@ -65,7 +65,14 @@ class Show(BaseModel):
         if source not in self.show_sources.all():
             ShowSource.objects.create(show=self, source=source)
 
-    # seems like unecuciary
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        verbose_name = "3. Show"
+        verbose_name_plural = "3. Shows"
+
+    # seems like a unecuciary fields
 
     # trending_weight = models.IntegerField(
     #     null=True,
@@ -91,6 +98,3 @@ class Show(BaseModel):
 
     #     is_free = models.BooleanField(default=False)
     #     is_trending = models.BooleanField(default=False)
-
-    def __str__(self) -> str:
-        return self.title

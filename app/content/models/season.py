@@ -10,6 +10,7 @@ class Season(BaseModel):
     show = models.ForeignKey(
         "content.Show",
         on_delete=models.CASCADE,
+        related_name="seasons",
     )
 
     duration = models.CharField(  # cтандарти ISO 8601
@@ -39,3 +40,5 @@ class Season(BaseModel):
 
     class Meta:
         ordering = ["-created"]
+        verbose_name = "5. Season"
+        verbose_name_plural = "5. Seasons"

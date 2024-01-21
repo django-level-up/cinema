@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from content.models import ShowSource, Show
 from .show_source import ShowSourceSerializer
+from .season import SeasonSerializer
 
 
 class ShowSerializer(serializers.ModelSerializer):
@@ -23,11 +24,19 @@ class ShowSerializer(serializers.ModelSerializer):
 
 
 class ShowDetailSerializer(serializers.ModelSerializer):
+    seasons = serializers.SerializerMethodField()
     show_sources = serializers.SerializerMethodField()
 
     def get_show_sources(self, obj):
         sources = ShowSource.objects.filter(show=obj)
         return ShowSourceSerializer(sources, many=True).data
+
+    def get_seasons(self, obj):
+        seasons = obj.seasons.all().values(
+            "id",
+            "title",
+        )
+        return SeasonSerializer(seasons, many=True).data
 
     class Meta:
         model = Show
