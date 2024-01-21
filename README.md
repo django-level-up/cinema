@@ -25,12 +25,6 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     docker-compose -f infrastructure/dev/docker-compose.yml up
     ```
 
-    Then:
-
-    ```bash
-    docker-compose -f infrastructure/dev/docker-compose.yml up
-    ```
-
 4. Stop the server and load initial data:
 
     ```bash
