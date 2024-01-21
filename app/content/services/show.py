@@ -62,6 +62,36 @@ def get_tv_show_info_kp(query):
     return None
 
 
+def get_seasons_info_kp(movie_id):
+    token = settings.KINOPOISK_TOKEN
+    url = "https://api.kinopoisk.dev/v1.4/season"
+    params = {
+        "movieId": movie_id,
+    }
+    headers = {
+        "accept": "application/json",
+        "X-API-KEY": f"{token}",
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        seasons_info = []
+
+        for season_data in data.get("docs", []):
+            season_info = {
+                "id": season_data.get("id", None),
+                "name": season_data.get("name", None),
+                "description": season_data.get("description", None),
+            }
+            seasons_info.append(season_info)
+
+        return seasons_info
+
+    return None
+
+
 # def get_tw_show_info_kp(query):
 #     token = settings.KINOPOISK_TOKEN
 #     url = "https://api.kinopoisk.dev/v1.4/movie/search"
@@ -96,33 +126,3 @@ def get_tv_show_info_kp(query):
 #             }
 #             return movie_info
 #     return None
-
-
-def get_seasons_info_kp(movie_id):
-    token = settings.KINOPOISK_TOKEN
-    url = "https://api.kinopoisk.dev/v1.4/season"
-    params = {
-        "movieId": movie_id,
-    }
-    headers = {
-        "accept": "application/json",
-        "X-API-KEY": f"{token}",
-    }
-
-    response = requests.get(url, params=params, headers=headers)
-
-    if response.status_code == 200:
-        data = response.json()
-        seasons_info = []
-
-        for season_data in data.get("docs", []):
-            season_info = {
-                "id": season_data.get("id", None),
-                "name": season_data.get("name", None),
-                "description": season_data.get("description", None),
-            }
-            seasons_info.append(season_info)
-
-        return seasons_info
-
-    return None

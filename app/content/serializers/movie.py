@@ -4,11 +4,11 @@ from .movie_source import MovieSourceSerializer
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    movie_sources = serializers.SerializerMethodField()
+    # movie_sources = serializers.SerializerMethodField()
 
-    def get_movie_sources(self, obj):
-        sources = MovieSource.objects.filter(movie=obj)
-        return MovieSourceSerializer(sources, many=True).data
+    # def get_movie_sources(self, obj):
+    #     sources = MovieSource.objects.filter(movie=obj)
+    #     return MovieSourceSerializer(sources, many=True).data
 
     class Meta:
         model = Movie
@@ -17,8 +17,9 @@ class MovieSerializer(serializers.ModelSerializer):
             "title",
             "image",
             "imdb_rating",
+            "tmdb_rating",
             "kinopoisk_rating",
-            "movie_sources",
+            # "movie_sources",
         )
 
 
@@ -31,17 +32,4 @@ class MovieDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = (
-            "id",
-            "title",
-            "description",
-            "image",
-            "bg_image",
-            "imdb_rating",
-            "kinopoisk_rating",
-            "duration",
-            "keywords",
-            "release_date",
-            "movie_sources",
-        )
-
+        fields = "__all__"

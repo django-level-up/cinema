@@ -1,18 +1,16 @@
 from rest_framework import serializers
-from content.models import ShowSource
+from content.models import SeasonSource
 
-class ShowSourceSerializer(serializers.ModelSerializer):
+class SeasonSourceSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
 
     class Meta:
-        model = ShowSource
+        model = SeasonSource
         fields = [
             "title",
             "download_link",
             "kinopoisk_link",
             "imdb_link",
-            "tmdb_link",
-            "watch_link",
             "valid_source",
         ]
 

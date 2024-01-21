@@ -40,6 +40,6 @@ class MovieSource(BaseModel):
         return f"Got {self.movie.title} on {self.source.title}"
 
     class Meta:
-        verbose_name = "Movie Source"
-        verbose_name_plural = "Movies Sources"
+        verbose_name = "2. Movie Source"
+        verbose_name_plural = "2. Movies Sources"
         unique_together = ("source", "movie")

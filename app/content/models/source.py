@@ -20,4 +20,5 @@ class Source(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = "Source"
+        verbose_name = "0. Source"
+        verbose_name_plural = "0. Sources"

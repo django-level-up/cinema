@@ -41,6 +41,6 @@ class ShowSource(BaseModel):
         return f"Got {self.show.title} on {self.source.title}"
 
     class Meta:
-        verbose_name = "Show Source"
-        verbose_name_plural = "Shows Sources"
+        verbose_name = "4. Show Source"
+        verbose_name_plural = "4. Shows Sources"
         unique_together = ("source", "show")

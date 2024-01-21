@@ -1,3 +1,4 @@
 from .movie import MovieViewSet
 from .show import ShowViewSet
-# from .movie import MovieListView
+from .season import SeasonViewSet
+from .episode import EpisodeViewSet
