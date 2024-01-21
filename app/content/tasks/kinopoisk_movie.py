@@ -42,7 +42,7 @@ def update_movies_kp(self):
 
                 filtered.save()
                 print("Movie-" + str(movie.title) + "updated from KINOPOISK")
-                time.sleep(60)
+                time.sleep(5)
 
             else:
                 time.sleep(1)
