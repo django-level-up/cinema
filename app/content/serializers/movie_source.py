@@ -12,6 +12,8 @@ class MovieSourceSerializer(serializers.ModelSerializer):
             "download_link",
             "kinopoisk_link",
             "imdb_link",
+            "tmdb_link",
+            "watch_link",
             "valid_source",
         ]
 

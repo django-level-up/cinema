@@ -4,11 +4,11 @@ from .show_source import ShowSourceSerializer
 
 
 class ShowSerializer(serializers.ModelSerializer):
-    show_sources = serializers.SerializerMethodField()
+    # show_sources = serializers.SerializerMethodField()
 
-    def get_show_sources(self, obj):
-        sources = ShowSource.objects.filter(movie=obj)
-        return ShowSourceSerializer(sources, many=True).data
+    # def get_show_sources(self, obj):
+    #     sources = ShowSource.objects.filter(movie=obj)
+    #     return ShowSourceSerializer(sources, many=True).data
 
     class Meta:
         model = Show
@@ -18,7 +18,7 @@ class ShowSerializer(serializers.ModelSerializer):
             "image",
             "imdb_rating",
             "kinopoisk_rating",
-            "show_sources",
+            # "show_sources",
         )
 
 
