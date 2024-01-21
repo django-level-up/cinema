@@ -9,3 +9,4 @@ POSTGRES_DB=db_test
 
 MODE="TEST"
 SECRET_KEY="django-insecure-&q!1yi1(8oimws#xq3t5aw@$3&)71_zq4vtt0*b59^6p^any-test"
+TMDB_API_KEY = "2a06508577365ee06e3eade5759f7ed0"

@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     # "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    'django_extensions',
+    "rest_framework",
+    'drf_spectacular',
+    
     "common",
     "account",
     "content",
@@ -132,8 +136,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CELERY settings
 
-# CELERY_BROKER_URL = 'redis://redis:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -141,3 +143,35 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 KINOPOISK_TOKEN = os.environ.get("KINOPOISK_TOKEN")
+KINOPOISK_TOKEN2 = os.environ.get("KINOPOISK_TOKEN2")
+KINOPOISK_TOKEN3 = os.environ.get("KINOPOISK_TOKEN3")
+KINOPOISK_TOKEN4 = os.environ.get("KINOPOISK_TOKEN4")
+
+
+TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "CINEMA API",
+    "DESCRIPTION": "Documentation of API endpoints of CINEMA",
+    "VERSION": "0.0.1",
+    "SERVE_PERMISSIONS": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+    },
+    "SCHEMA_PATH_PREFIX": r"/api/v[0-9]",
+
+}
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}

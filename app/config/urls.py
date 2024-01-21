@@ -18,12 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("account/", include("account.urls", namespace="account")),
-    path("content/", include("content.urls", namespace="content")),
+    path("api/v1/account/", include("account.urls", namespace="account")),
+    path("schema/", SpectacularAPIView.as_view(), name="api-schema"),
+    path(
+        "swagger/",
+        SpectacularSwaggerView.as_view(url_name="api-schema"),
+        name="api-docs",
+    ),
+    path("redoc/", SpectacularRedocView.as_view(url_name="api-schema"), name="redoc"),
+    path("api/v1/content/", include("content.urls", namespace="content")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -32,4 +43,4 @@ if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
     ]
-admin.site.site_header = "CINEMA"
+admin.site.site_header = "CINEMA 1.0"

@@ -13,10 +13,6 @@ class ShowSource(BaseModel):
         "content.Source",
         on_delete=models.CASCADE,
     )
-    download_link = models.URLField(
-        null=True,
-        blank=True,
-    )
 
     kinopoisk_link = models.URLField(
         null=True,
@@ -27,6 +23,24 @@ class ShowSource(BaseModel):
         blank=True,
     )
 
+    download_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+    tmdb_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+    valid_source = models.BooleanField(default=False)
+    watch_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self) -> str:
+        return f"Got {self.show.title} on {self.source.title}"
+
     class Meta:
         verbose_name = "Show Source"
         verbose_name_plural = "Shows Sources"
+        unique_together = ("source", "show")

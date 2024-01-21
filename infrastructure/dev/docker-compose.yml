@@ -17,8 +17,7 @@ services:
       python3 manage.py wait_for_db &&
       python3 manage.py migrate &&
       python manage.py initadmin &&
-      python3 manage.py import_movies &&
-      python3 manage.py import_shows &&
+
       echo 'yes' | python3 manage.py collectstatic &&
 
       gunicorn config.wsgi:application --bind 0.0.0.0:8000"
@@ -55,7 +54,7 @@ services:
       volumes:
         - ../../app/:/cinema/app/
         - ../:/infrastructure/
-      command: sh -c "sleep 2 && celery -A config worker --loglevel=info"
+      command: sh -c "celery -A config worker --loglevel=info"
       env_file:
         - .env
       depends_on:
