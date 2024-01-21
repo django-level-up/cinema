@@ -6,14 +6,11 @@ class MovieSource(BaseModel):
     movie = models.ForeignKey(
         "content.Movie",
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
     )
     source = models.ForeignKey(
         "content.Source",
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
+
     )
     download_link = models.URLField(
         null=True,
@@ -28,7 +25,16 @@ class MovieSource(BaseModel):
         null=True,
         blank=True,
     )
-    valid_source = models.BooleanField(default=True)
+    tmdb_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+    watch_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+
+    valid_source = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"Got {self.movie.title} on {self.source.title}"

@@ -27,6 +27,11 @@ class Movie(BaseModel):
         null=True,
         validators=[MinValueValidator(0.0)],
     )
+    tmdb_rating = models.FloatField(
+        blank=True,
+        null=True,
+        validators=[MinValueValidator(0.0)],
+    )
     kinopoisk_rating = models.FloatField(
         blank=True,
         null=True,

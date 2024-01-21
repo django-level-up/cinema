@@ -27,8 +27,18 @@ class ShowSource(BaseModel):
         null=True,
         blank=True,
     )
-    
-    valid_source = models.BooleanField(default=True)
+    tmdb_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+    valid_source = models.BooleanField(default=False)
+    watch_link = models.URLField(
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self) -> str:
+        return f"Got {self.show.title} on {self.source.title}"
 
     class Meta:
         verbose_name = "Show Source"

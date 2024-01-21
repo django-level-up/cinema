@@ -19,3 +19,7 @@ drf-spectacular[sidecar]
 
 django-extensions==3.2.3
 ipython==8.20.0
+
+tmdbv3api==1.9.0
+
+kinopoisk-dev==0.2.0

@@ -11,7 +11,7 @@ router.register(r"movies", MovieViewSet, basename="movie")
 router.register(r"shows", ShowViewSet, basename="show")
 
 
-print(router.urls)
+# print(router.urls)
 app_name = "content"
 
 urlpatterns = [

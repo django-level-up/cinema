@@ -21,7 +21,7 @@ def update_movies(self):
     try:
         imdb_source = Source.objects.filter(slug="imdb").first()
         if not imdb_source:
-            imdb_source = Source.objects.create(slug="imdb")
+            imdb_source = Source.objects.create(title="imdb")
 
         for movie in Movie.objects.all():
             data = imdb.get_by_name(movie.title, tv=False)
@@ -60,13 +60,13 @@ def update_movies(self):
                 movie=movie, source=imdb_source
             )
             if imdb_id:
-                download_link = "https://www.imdb.com/title/" + imdb_id + "/"
-                filtered.download_link = download_link
+                imdb_link = "https://www.imdb.com/title/" + imdb_id + "/"
+                filtered.imdb_link = imdb_link
 
             filtered.save()
             print("Movie-" + str(movie.title) + "updated from IMDb")
 
-            time.sleep(1)
+            time.sleep(2)
 
         countdown = 60
         current_task.apply_async(countdown=countdown)
@@ -81,12 +81,11 @@ def update_shows(self):
     try:
         imdb_source = Source.objects.filter(slug="imdb").first()
         if not imdb_source:
-            imdb_source = Source.objects.create(slug="imdb")
+            imdb_source = Source.objects.create(title="imdb")
 
         for show in Show.objects.all():
-            data = imdb.get_by_name(show.title, tv=False)
+            data = imdb.get_by_name(str(show.title), tv=False)
             data_dict = json.loads(data)
-
             description = data_dict.get("description", None)
             rating = data_dict.get("rating", {}).get("ratingValue", None)
             image = data_dict.get("poster", None)
@@ -95,7 +94,6 @@ def update_shows(self):
             duration = data_dict.get("duration", None)
             url = data_dict.get("url", None)
             imdb_id = get_imdb_id(url)
-
             if description:
                 show.description = str(description)
             if rating:
@@ -120,11 +118,11 @@ def update_shows(self):
                 show=show, source=imdb_source
             )
             if imdb_id:
-                download_link = "https://www.imdb.com/title/" + imdb_id + "/"
-                filtered.download_link = download_link
+                imdb_link = "https://www.imdb.com/title/" + imdb_id + "/"
+                filtered.imdb_link = imdb_link
 
             filtered.save()
-            print("Show-" + str(show.title) + "updated from IMDb")
+            print("Show-" + str(show.title) + " updated from IMDb")
 
             time.sleep(1)
 

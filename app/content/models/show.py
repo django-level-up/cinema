@@ -33,7 +33,12 @@ class Show(BaseModel):
         null=True,
         validators=[MinValueValidator(0.0)],
     )
-
+    
+    tmdb_rating = models.FloatField(
+        blank=True,
+        null=True,
+        validators=[MinValueValidator(0.0)],
+    )
     duration = models.CharField(  # cтандарди ISO 8601
         max_length=255,
         null=True,
