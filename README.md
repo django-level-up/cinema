@@ -34,7 +34,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     Then start again:
 
     ```bash
-    docker-compose -f infrastructure/dev/docker-compose.yml up
+    docker-compose -f infrastructure/dev/docker-compose.yml up --build
     ```
 
 5. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
