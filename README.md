@@ -13,10 +13,10 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     git clone https://github.com/django-level-up/cinema.git
     ```
 
-2. Rename the dotenv file:
+2. Add the .env file to:
 
-    ```bash
-    mv infrastructure/dev/dotenv infrastructure/dev/.env
+    ```
+    cd infrastructure/dev/
     ```
 
 3. Run Docker Compose:
