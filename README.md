@@ -22,7 +22,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
 3. Run Docker Compose:
 
     ```bash
-    docker-compose -f infrastructure/dev/docker-compose.yml up
+    docker-compose -f infrastructure/dev/docker-compose.yml up --build
     ```
 
 4. Stop the server and load initial data:
@@ -34,7 +34,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
     Then start again:
 
     ```bash
-    docker-compose -f infrastructure/dev/docker-compose.yml up --build
+    docker-compose -f infrastructure/dev/docker-compose.yml up 
     ```
 
 5. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
@@ -46,8 +46,3 @@ Cinema is a movie viewing project that aggregates films from various sources suc
 ## ER Diagram
 
 ![ER Diagram](ER.png)
-
-## Note
-
-- To download movies from other sources, ensure the presence of necessary API keys and configurations in the `.env` file.
-- Additional information about available APIs and configurations can be found in the documentation.
