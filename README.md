@@ -41,7 +41,7 @@ Cinema is a movie viewing project that aggregates films from various sources suc
    - Email: super@gmail.com
    - Password: super
 
-6. Browse movies and test the API using Swagger. Go to [localhost:8000/admin/](http://localhost:8000/admin/) and log in with the following credentials:
+6. Browse movies and test the API using Swagger. Go to [localhost:8000/swagger/](http://localhost:8000/swagger/) and log in with the following credentials:
 
 ## ER Diagram
 
