@@ -8,10 +8,7 @@ from content.models import (
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.utils.log import get_task_logger
 from content.services import get_movie_info_kp
-# from django.conf import settings
 
-
-# token = settings.KINOPOISK_TOKEN2
 
 logger = get_task_logger(__name__)
 
@@ -42,7 +39,7 @@ def update_movies_kp(self):
 
                 filtered.save()
                 print("Movie-" + str(movie.title) + "updated from KINOPOISK")
-                time.sleep(5)
+                time.sleep(2)
 
             else:
                 time.sleep(1)
