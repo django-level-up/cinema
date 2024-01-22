@@ -3,6 +3,7 @@ from content.models import Show, ShowSource, Source
 from .show_source import ShowSourceInline
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from .season import SeasonInline
 
 
 @admin.register(Show)
@@ -23,7 +24,10 @@ class ShowAdmin(admin.ModelAdmin):
         "release_date",
     )
     list_per_page = 10
-    inlines = [ShowSourceInline]
+    inlines = [
+        SeasonInline,
+        ShowSourceInline,
+    ]
     exclude = ("sources",)
     # prepopulated_fields = {"slug": ("title",)}
     fieldsets = (

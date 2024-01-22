@@ -10,7 +10,7 @@ class EpisodeSourceInline(admin.StackedInline):
 
 @admin.register(EpisodeSource)
 class EpisodeSourceAdmin(admin.ModelAdmin):
-    list_display = ["season", "get_download_link", "source"]
+    list_display = ["get_download_link", "source"]
     list_filter = ["source"]
     list_per_page = 10
 
