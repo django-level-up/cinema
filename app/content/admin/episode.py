@@ -3,6 +3,11 @@ from content.models import Episode
 from .episode_source import EpisodeSourceInline
 
 
+class EpisodeInline(admin.StackedInline):
+    model = Episode
+    extra = 1
+
+
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
     list_display = (
@@ -21,7 +26,6 @@ class EpisodeAdmin(admin.ModelAdmin):
                 "fields": (
                     "title",
                     "description",
-                    "show",
                 )
             },
         ),

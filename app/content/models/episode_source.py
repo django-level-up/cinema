@@ -3,28 +3,18 @@ from django.db import models
 
 
 class EpisodeSource(BaseModel):
-    show = models.ForeignKey(
-        "content.Show",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-
-    season = models.ForeignKey(
-        "content.Season",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-
     episode = models.ForeignKey(
         "content.Episode",
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
     source = models.ForeignKey(
         "content.Source",
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
     download_link = models.URLField(
@@ -50,4 +40,4 @@ class EpisodeSource(BaseModel):
     class Meta:
         verbose_name = "8. Episode Source"
         verbose_name_plural = "8. Episode Sources"
-        unique_together = ("source", "show", "season", "episode")
+        unique_together = ("source", "episode")
