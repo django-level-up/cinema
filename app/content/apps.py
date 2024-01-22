@@ -25,8 +25,8 @@ class ContentConfig(AppConfig):
                 update_movies_tmdb.delay()
                 update_shows_tmdb.delay()
                 
-                # update_movies_kp.delay()
-                # update_shows_kp.delay()
+                update_movies_kp.delay()
+                update_shows_kp.delay()
                 
                 check_movie_source.delay()
                 check_show_source.delay()
