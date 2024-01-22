@@ -43,7 +43,7 @@ def update_shows_kp(self):
 
                 filtered.save()
                 print("Show-" + str(show.title) + " updated from KINOPOISK")
-                time.sleep(5)
+                time.sleep(2)
 
             else:
                 time.sleep(1)
