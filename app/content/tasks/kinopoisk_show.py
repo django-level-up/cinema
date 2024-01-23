@@ -42,6 +42,8 @@ def update_shows_kp(self):
 
                 else:
                     time.sleep(1)
+                    
+                time.sleep(5)
 
             # countdown = 60
             # current_task.apply_async(countdown=countdown)

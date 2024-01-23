@@ -37,10 +37,12 @@ def update_movies_kp(self):
 
                     filtered.save()
                     print("Movie-" + str(movie.title) + " updated from KINOPOISK")
-                    time.sleep(5)
+                    time.sleep(1)
+
 
                 else:
                     time.sleep(1)
+                time.sleep(5)
 
             # countdown = 60
             # current_task.apply_async(countdown=countdown)

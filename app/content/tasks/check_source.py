@@ -1,4 +1,4 @@
-from celery import shared_task, current_task
+from celery import shared_task
 import time
 from content.models import ShowSource, MovieSource
 from celery.utils.log import get_task_logger
@@ -26,8 +26,8 @@ def check_movie_source(self):
                 print(f"Source of movie - {source.movie} checked")
                 time.sleep(1)
 
-            countdown = 60
-            current_task.apply_async(countdown=countdown)
+            # countdown = 60
+            # current_task.apply_async(countdown=countdown)
 
     except SoftTimeLimitExceeded:
         logger.warning("Task time limit exceeded. Restarting the task.")
