@@ -54,7 +54,8 @@ services:
       volumes:
         - ../../app/:/cinema/app/
         - ../:/infrastructure/
-      command: sh -c "celery -A config worker --loglevel=info"
+      command: sh -c "celery -A config worker --concurrency=10"
+
       env_file:
         - .env
       depends_on:

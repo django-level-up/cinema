@@ -7,9 +7,7 @@ from PyMovieDb import IMDB
 import json
 from datetime import datetime
 from content.services import get_imdb_id
-from django.conf import settings
 
-token = settings.KINOPOISK_TOKEN
 
 imdb = IMDB()
 logger = get_task_logger(__name__)
@@ -55,7 +53,7 @@ def update_movies(self):
                         pass
                 movie.save()
 
-                filtered, created = MovieSource.objects.get_or_create(
+                filtered, _ = MovieSource.objects.get_or_create(
                     movie=movie, source=imdb_source
                 )
                 if imdb_id:
@@ -65,7 +63,7 @@ def update_movies(self):
                 filtered.save()
                 print("Movie-" + str(movie.title) + " updated from IMDb")
 
-                time.sleep(1)
+            time.sleep(1)
 
 
     except SoftTimeLimitExceeded:
@@ -75,7 +73,7 @@ def update_movies(self):
 def update_shows(self):
     try:
         imdb_source, _ = Source.objects.get_or_create(
-            slug="kinopoisk", defaults={"title": "kinopoisk"}
+            slug="imdb", defaults={"title": "imdb"}
         )
 
         while True:
@@ -120,7 +118,7 @@ def update_shows(self):
                 filtered.save()
                 print("Show-" + str(show.title) + " updated from IMDb")
 
-                time.sleep(1)
+            time.sleep(1)
 
             # countdown = 60
             # current_task.apply_async(countdown=countdown)

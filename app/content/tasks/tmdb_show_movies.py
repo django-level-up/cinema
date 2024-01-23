@@ -29,7 +29,7 @@ def update_movies_tmdb(self):
                         movie.tmdb_rating = float(rating)
                         movie.save()
                     if url:
-                        filtered, created = MovieSource.objects.get_or_create(
+                        filtered, _ = MovieSource.objects.get_or_create(
                             movie=movie, source=tmdb_source
                         )
                         filtered.tmdb_link = url
@@ -68,7 +68,7 @@ def update_shows_tmdb(self):
                         filtered.tmdb_link = url
                         filtered.save()
                     print("Show-" + str(show.title) + " updated from TMDB")
-                    time.sleep(1)
+                time.sleep(1)
 
             # countdown = 60
             # current_task.apply_async(countdown=countdown)
