@@ -2,7 +2,7 @@ from .base import *
 import socket
 
 DEBUG = True
-ALLOWED_HOSTS += ["*"]
+ALLOWED_HOSTS + ["*"]
 
 if DEBUG:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())

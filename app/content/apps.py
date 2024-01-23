@@ -13,11 +13,6 @@ class ContentConfig(AppConfig):
                                        update_movies_kp,
                                        check_movie_source,
                                        check_show_source,
-                                       bye_task,
-                                       hello_task,
-                                       good_task,
-                                       bad_task_task,
-                                       normal_task
                                        )
 
             from django.db.models.signals import post_migrate
