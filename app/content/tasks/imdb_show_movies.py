@@ -79,10 +79,9 @@ def update_movies(self):
 @shared_task(bind=True, soft_time_limit=3600)
 def update_shows(self):
     try:
-        imdb_source = Source.objects.filter(slug="imdb").first()
-        if not imdb_source:
-            imdb_source = Source.objects.create(title="imdb")
-
+        imdb_source, _ = Source.objects.get_or_create(
+            slug="kinopoisk", defaults={"title": "kinopoisk"}
+        )
         for show in Show.objects.all():
             data = imdb.get_by_name(str(show.title), tv=False)
             data_dict = json.loads(data)

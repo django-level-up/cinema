@@ -16,11 +16,9 @@ logger = get_task_logger(__name__)
 @shared_task(bind=True, soft_time_limit=3600)
 def update_movies_kp(self):
     try:
-
-        kp_source = Source.objects.filter(slug="kinopoisk").first()
-        if not kp_source:
-            kp_source = Source.objects.create(title="kinopoisk")
-
+        kp_source, _ = Source.objects.get_or_create(
+            slug="kinopoisk", defaults={"title": "kinopoisk"}
+        )
         for movie in Movie.objects.all():
             data_dict = get_movie_info_kp(query=str(movie.title))
             if data_dict:
