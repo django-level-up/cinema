@@ -17,10 +17,9 @@ logger = get_task_logger(__name__)
 @shared_task(bind=True, soft_time_limit=3600)
 def update_movies_tmdb(self):
     try:
-        tmdb_source = Source.objects.filter(slug="tmdb").first()
-        if not tmdb_source:
-            tmdb_source = Source.objects.create(title="tmdb")
-
+        tmdb_source, _ = Source.objects.get_or_create(
+            slug="tmdb", defaults={"title": "tmdb"}
+        )
         for movie in Movie.objects.all():
             data_dict = get_movie_info_tmdb(str(movie.title))
             if data_dict:

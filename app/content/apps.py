@@ -13,13 +13,19 @@ class ContentConfig(AppConfig):
                                        update_movies_kp,
                                        check_movie_source,
                                        check_show_source,
+                                       bye_task,
+                                       hello_task,
+                                       good_task,
+                                       bad_task_task,
+                                       normal_task
                                        )
 
             from django.db.models.signals import post_migrate
             from django.apps import apps
 
             def on_startup(**kwargs):
-                    
+                check_movie_source.delay()
+                check_show_source.delay()
                 update_movies_kp.delay()
                 update_shows_kp.delay()
                 
@@ -28,9 +34,7 @@ class ContentConfig(AppConfig):
 
                 update_movies.delay() # imdb
                 update_shows.delay()
-                
-                check_movie_source.delay()
-                check_show_source.delay()
+   
                 
 
 

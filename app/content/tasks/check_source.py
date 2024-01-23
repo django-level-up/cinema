@@ -26,7 +26,7 @@ def check_movie_source(self):
             source.valid_source = is_valid
             source.save()
             print(f"Source of movie - {source.movie} checked")
-            time.sleep(2)
+            time.sleep(1)
 
         countdown = 60
         current_task.apply_async(countdown=countdown)
@@ -34,6 +34,7 @@ def check_movie_source(self):
     except SoftTimeLimitExceeded:
         logger.warning("Task time limit exceeded. Restarting the task.")
         check_movie_source.apply_async(countdown=60)
+
 
 @shared_task(bind=True, soft_time_limit=3600)
 def check_show_source(self):
@@ -44,7 +45,7 @@ def check_show_source(self):
             source.valid_source = is_valid
             source.save()
             print(f"Source of show - {source.show} checked")
-            time.sleep(2)
+            time.sleep(1)
 
         countdown = 60
         current_task.apply_async(countdown=countdown)

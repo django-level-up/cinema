@@ -21,10 +21,9 @@ logger = get_task_logger(__name__)
 @shared_task(bind=True, soft_time_limit=3600)
 def update_shows_kp(self):
     try:
-        kp_source = Source.objects.filter(slug="kinopoisk").first()
-        if not kp_source:
-            kp_source = Source.objects.create(title="kinopoisk")
-
+        kp_source, _ = Source.objects.get_or_create(
+            slug="kinopoisk", defaults={"title": "kinopoisk"}
+        )
         for show in Show.objects.all():
             data_dict = get_tv_show_info_kp(query=str(show.title))
             if data_dict:
